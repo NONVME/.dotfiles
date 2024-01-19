@@ -1,24 +1,7 @@
 -- Sntup language servers.
 local lspconfig = require('lspconfig')
 lspconfig.pyright.setup {}
-lspconfig.tsserver.setup {}
-lspconfig.prismals.setup {}
-lspconfig.cssls.setup {
-    capabilities = capabilities
-}
-lspconfig.golangci_lint_ls.setup {}
-lspconfig.rust_analyzer.setup {
-  settings = {
-    ['rust-analyzer'] = {
-            diagnostics = {
-                enable = true,
-                experimental = {
-                    enable = true,
-                },
-            },
-    },
-  },
-}
+
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<leader>lD', vim.diagnostic.open_float)
@@ -38,7 +21,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+        
+        -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+        
         -- vim.keymap
         --     .set('n', '<Leader>sa', vim.lsp.buf.add_workspace_folder, opts)
         -- vim.keymap.set('n', '<Leader>sr', vim.lsp.buf.remove_workspace_folder,

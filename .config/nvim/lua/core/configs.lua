@@ -7,6 +7,7 @@ vim.o.langmap = "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJ
 vim.o.spelllang = "ru_ru,en_us"
 vim.o.linebreak = true
 vim.opt.timeoutlen = 400
+vim.wo.signcolumn = "yes"
 
 -- Colorscheme
 vim.g.nord_italic = false
@@ -26,6 +27,7 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.smartindent = true
 
+-- vim.opt.hlsearch = false
 --
 -- Mappings
 --
@@ -42,9 +44,7 @@ keymap("x", "p", "pgvy", keymap_opts)
 keymap("x", "P", "Pgvy", keymap_opts)
 
 -- Do not lose the buffer after delete
-keymap("n", 'd', '"_d', keymap_opts)
-keymap("x", 'd', '"_d', keymap_opts)
-keymap("v", 'd', '"_d', keymap_opts)
+keymap({"n", "x", "v"}, 'd', '"_d', keymap_opts)
 keymap("n", 'x', '"_x', keymap_opts)
 
 -- Hotkeys
@@ -58,6 +58,7 @@ keymap("i", "<c-j>", "<down>", keymap_opts)
 keymap("i", "<c-h>", "<left>", keymap_opts)
 keymap("i", "<c-l>", "<right>", keymap_opts)
 
+vim.keymap.set('n', '*', '*zz', {desc = 'Search and center screen'})
 
 --
 -- Custom functions
@@ -83,3 +84,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt.colorcolumn = "120"
   end
 })
+
+
+-- how to write own func/command etc...
+-- https://vonheikemen.github.io/devlog/tools/build-your-first-lua-config-for-neovim/

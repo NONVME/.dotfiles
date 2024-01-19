@@ -12,10 +12,18 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  "folke/which-key.nvim",
-  { "folke/neoconf.nvim", cmd = "Neoconf" },
-  "folke/neodev.nvim",
+  {"folke/which-key.nvim"},
   {'nvim-treesitter/nvim-treesitter'},
   {'neovim/nvim-lspconfig'},
   {'shaunsingh/nord.nvim'},
+  {"williamboman/mason.nvim", opts = {}},
+  {'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+  {'nvim-lualine/lualine.nvim'},
+  {'numToStr/Comment.nvim'},
+  {'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {} -- this is equalent to setup({}) function
+  },
+  {'lewis6991/gitsigns.nvim', opts = {}},
+  {"0x00-ketsu/autosave.nvim", opts = {},},
 })
