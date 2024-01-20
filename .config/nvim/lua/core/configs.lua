@@ -11,6 +11,8 @@ vim.wo.signcolumn = "yes"
 
 -- Colorscheme
 vim.g.nord_italic = false
+vim.g.nord_borders = true
+vim.g.nord_contrast = true
 vim.cmd.colorscheme('nord') -- Load the colorscheme
 
 -- Search
@@ -27,7 +29,12 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.smartindent = true
 
--- vim.opt.hlsearch = false
+--
+-- Plugin settings
+--
+-- Vim-better-whitespace
+vim.api.nvim_set_hl(0, 'ExtraWhitespace', { bg='#BF616A' })
+
 --
 -- Mappings
 --
@@ -58,11 +65,32 @@ keymap("i", "<c-j>", "<down>", keymap_opts)
 keymap("i", "<c-h>", "<left>", keymap_opts)
 keymap("i", "<c-l>", "<right>", keymap_opts)
 
-vim.keymap.set('n', '*', '*zz', {desc = 'Search and center screen'})
+keymap('n', '*', '*zz', {desc = 'Search and center screen'})
+-- keymap("n", "<MouseDown>", "<C-Y>", {desc = 'scroll by 1 line per row'})
+-- keymap("n", "<MouseUp>", "<C-E>", {desc = 'scroll by 1 line per row'})
+keymap({ "n", "v" }, "<leader>r", [[:!python3 %<CR>]], {desc = "Shortcut to run file through interpreter"})
+
 
 --
 -- Custom functions
 --
+local augroup = vim.api.nvim_create_augroup   -- Create/get autocommand group
+local autocmd = vim.api.nvim_create_autocmd   -- Create autocommand
+
+-- Don't auto commenting new lines
+autocmd('BufEnter', {
+  pattern = '',
+  command = 'set fo-=c fo-=r fo-=o'
+})
+
+-- Set the line in 120 character
+autocmd("FileType", {
+  pattern = "python",
+  callback = function(args)
+    vim.opt.colorcolumn = "120"
+  end
+})
+
 function _G.dump(...)
     local objects = vim.tbl_map(vim.inspect, {...})
     print(unpack(objects))
@@ -76,14 +104,6 @@ vim.cmd([[
     autocmd FileType asciidoc setlocal wrap
   augroup END
 ]])
-
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "python",
-  callback = function(args)
-    vim.opt.colorcolumn = "120"
-  end
-})
 
 
 -- how to write own func/command etc...
