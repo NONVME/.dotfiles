@@ -1,12 +1,15 @@
--- Basic config
-require("core.plugins")
-require("core.configs")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
--- Plugins config
-require("plugins.treesitter")
-require("plugins.lsp")
-require("plugins.telescope")
-require("plugins.lualine")
-require("plugins.comment")
-require("plugins.which-key")
-require("plugins.semshi")
+require("settings")
+require("lazy").setup("plugins")

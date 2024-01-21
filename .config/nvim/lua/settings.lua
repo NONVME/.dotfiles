@@ -9,12 +9,6 @@ vim.o.linebreak = true
 vim.opt.timeoutlen = 400
 vim.wo.signcolumn = "yes"
 
--- Colorscheme
-vim.g.nord_italic = false
-vim.g.nord_borders = true
-vim.g.nord_contrast = true
-vim.cmd.colorscheme('nord') -- Load the colorscheme
-
 -- Search
 vim.o.ic = true -- Ignore case when searching. set noic
 vim.o.smartcase = true -- But only if the search string itself is lowercase
@@ -28,12 +22,6 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.smartindent = true
-
---
--- Plugin settings
---
--- Vim-better-whitespace
-vim.api.nvim_set_hl(0, 'ExtraWhitespace', { bg='#BF616A' })
 
 --
 -- Mappings
