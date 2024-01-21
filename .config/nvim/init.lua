@@ -12,4 +12,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("settings")
-require("lazy").setup("plugins")
+require("lazy").setup({
+  spec = {
+    { import = "plugins" },
+  },
+  install = { colorscheme = { "nord" } },
+})

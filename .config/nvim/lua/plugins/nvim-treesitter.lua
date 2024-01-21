@@ -6,7 +6,9 @@ return {
     config.setup({
       ensure_installed = {"c", "query", "lua", "go", "javascript", "python", "vim", "vimdoc", "html", "htmldjango", "json", "toml", "yaml", "dockerfile", "make", "gitignore", "bash", "markdown", "racket"},
       auto_install = true,
-      highlight = { enable = true, disable = { "python" } },
+      highlight = { enable = true,
+        -- disable = { "python" },
+      },
       indent = { enable = true },
     })
   end,
