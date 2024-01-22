@@ -92,7 +92,3 @@ vim.cmd([[
   autocmd FileType asciidoc setlocal wrap
   augroup END
 ]])
-
-
--- how to write own func/command etc...
--- https://vonheikemen.github.io/devlog/tools/build-your-first-lua-config-for-neovim/

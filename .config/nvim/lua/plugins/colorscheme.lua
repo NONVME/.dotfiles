@@ -1,7 +1,8 @@
 return {
-  'hoelter/nord.nvim',
+  dir = "~/.config/nvim/lua/self-plugins/nord.nvim/",
   priority = 1000,
   config = function()
+    -- require('nord').setup()
     vim.cmd.colorscheme('nord')
   end,
 }

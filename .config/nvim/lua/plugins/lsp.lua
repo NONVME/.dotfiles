@@ -14,9 +14,21 @@ return {
     },
   },
   {
+    "folke/neodev.nvim",
+    config = function ()
+      -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+      require("neodev").setup()
+    end
+  },
+  {
     "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      { 'folke/neodev.nvim', opts = {} },
+    },
     lazy = false,
     config = function()
+
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local lspconfig = require("lspconfig")
 
