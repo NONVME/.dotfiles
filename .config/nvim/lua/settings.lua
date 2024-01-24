@@ -8,6 +8,7 @@ vim.o.spelllang = "ru_ru,en_us"
 vim.o.linebreak = true
 vim.opt.timeoutlen = 400
 vim.wo.signcolumn = "yes"
+vim.opt.swapfile = false
 
 -- Search
 vim.o.ic = true -- Ignore case when searching. set noic
@@ -92,3 +93,6 @@ vim.cmd([[
   autocmd FileType asciidoc setlocal wrap
   augroup END
 ]])
+
+
+-- about python json tool map https://vi.stackexchange.com/questions/7722/how-to-debug-a-mapping

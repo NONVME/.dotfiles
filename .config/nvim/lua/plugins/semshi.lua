@@ -8,8 +8,8 @@ return {
     vim.g["semshi#update_delay_factor"] = 0.001
     vim.cmd([[
         au FileType python nmap <silent> rm :Semshi rename<CR>
-        au FileType python nnoremap <buffer> <Tab> :Semshi goto name next<CR>
-        au FileType python nnoremap <buffer> <S-Tab> :Semshi goto name prev<CR>
+        au FileType python nnoremap <silent> <Tab> :Semshi goto name next<CR>
+        au FileType python nnoremap <silent> <S-Tab> :Semshi goto name prev<CR>
         ]])
   end,
 }
