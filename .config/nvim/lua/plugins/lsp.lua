@@ -14,18 +14,8 @@ return {
     },
   },
   {
-    "folke/neodev.nvim",
-    config = function ()
-      -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
-      require("neodev").setup()
-    end
-  },
-  {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      { 'folke/neodev.nvim', opts = {} },
-    },
     lazy = false,
     config = function()
 
@@ -36,7 +26,14 @@ return {
         capabilities = capabilities
       })
       lspconfig.lua_ls.setup({
-        capabilities = capabilities
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            completion = {
+              callSnippet = "Replace"
+            }
+          }
+        }
       })
 
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -50,6 +47,7 @@ return {
           vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, {buffer = true, desc = "Go to the definition of the type symbol"})
           vim.keymap.set('n', 'gl', vim.diagnostic.open_float, {buffer = true, desc = "Show diagnostics in a floating window"})
           vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, {buffer = true, desc = "Displays a function's signature information"})
+          vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
         end
       })
 

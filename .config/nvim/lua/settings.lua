@@ -94,5 +94,4 @@ vim.cmd([[
   augroup END
 ]])
 
-
 -- about python json tool map https://vi.stackexchange.com/questions/7722/how-to-debug-a-mapping
