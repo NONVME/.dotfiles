@@ -3,14 +3,14 @@ return {
     "williamboman/mason.nvim",
     lazy = false,
     config = function()
-      require("mason").setup()
+	require("mason").setup()
     end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
     lazy = false,
     opts = {
-      ensure_installed = {"pyright", "lua_ls"},
+      ensure_installed = { "pyright", "lua_ls" },
     },
   },
   {
@@ -18,24 +18,22 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     lazy = false,
     config = function()
+	local capabilities = require("cmp_nvim_lsp").default_capabilities()
+	local lspconfig = require("lspconfig")
 
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
-      local lspconfig = require("lspconfig")
-
-      lspconfig.pyright.setup({
-        capabilities = capabilities
-      })
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities,
-        settings = {
-          Lua = {
-            completion = {
-              callSnippet = "Replace"
-            }
-          }
-        }
-      })
-
+	lspconfig.pyright.setup({
+		capabilities = capabilities,
+	})
+	lspconfig.lua_ls.setup({
+		capabilities = capabilities,
+		settings = {
+			Lua = {
+				completion = {
+					callSnippet = "Replace",
+				},
+			},
+		},
+	})
       vim.api.nvim_create_autocmd('LspAttach', {
         desc = 'LSP actions',
         callback = function()

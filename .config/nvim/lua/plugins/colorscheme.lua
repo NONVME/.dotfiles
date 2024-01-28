@@ -1,5 +1,5 @@
 return {
-  dir = "~/.config/nvim/lua/self-plugins/nord.nvim/",
+  dir = "~/.config/nvim/lua/common-moduls/nord.nvim/",
   priority = 1000,
   config = function()
     -- require('nord').setup()

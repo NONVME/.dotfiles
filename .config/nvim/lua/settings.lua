@@ -1,6 +1,17 @@
+-- Modes
+--   normal_mode = "n",
+--   insert_mode = "i",
+--   visual_mode = "v",
+--   visual_block_mode = "x",
+--   term_mode = "t",
+--   command_mode = "c",
+
 --
 -- Common settings
 --
+
+-- vim.opt.termguicolors = true                -- set term gui colors
+
 vim.opt.number = true -- Line Numbers
 vim.opt.scrolloff = 3
 vim.o.langmap = "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
@@ -95,3 +106,4 @@ vim.cmd([[
 ]])
 
 -- about python json tool map https://vi.stackexchange.com/questions/7722/how-to-debug-a-mapping
+-- https://github.com/nix-community/nur-combined/tree/d98af9e2d9a012baa703697f09aeab5b399dea08/repos/ambroisie/modules/home/vim/plugin/settings
