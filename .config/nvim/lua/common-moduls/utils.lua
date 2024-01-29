@@ -6,6 +6,11 @@ M.dump = function(obj)
     print(vim.inspect(obj))
 end
 
+function M.root(root)
+  local f = debug.getinfo(1, "S").source:sub(2)
+  return vim.fn.fnamemodify(f, ":p:h:h") .. "/" .. (root or "")
+end
+
 --- checks if a given command is executable
 --- @param cmd string? command to check
 --- @return boolean executable

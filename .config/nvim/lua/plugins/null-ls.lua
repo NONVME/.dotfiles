@@ -30,10 +30,13 @@ return {
             condition = function()
                 return utils.is_executable("flake8") and not utils.is_executable("pflake8")
             end,
+            prefer_local = ".venv/bin"
+
         }),
         null_ls.builtins.diagnostics.pyproject_flake8.with({
             -- Only used if available
             condition = utils.is_executable_condition("pflake8"),
+            prefer_local = ".venv/bin"
         }),
         -- null_ls.builtins.diagnostics.mypy.with({
         --     -- Only used if available

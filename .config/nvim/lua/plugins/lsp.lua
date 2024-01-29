@@ -6,12 +6,27 @@ return {
 	require("mason").setup()
     end,
   },
+  -- For LSPs
   {
     "williamboman/mason-lspconfig.nvim",
     lazy = false,
     opts = {
-      ensure_installed = { "pyright", "lua_ls" },
+      ensure_installed = { "pyright", "lua_ls", },
     },
+  },
+  -- For formatters, linters. DAP?
+  {
+    "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "nvimtools/none-ls.nvim",
+    },
+    config = function()
+    require("mason-null-ls").setup({
+        ensure_installed = { "stylua", "jq", "printenv", "shellcheck", "yamllint", "black", "flake8"}
+    })
+    end,
   },
   {
     "neovim/nvim-lspconfig",

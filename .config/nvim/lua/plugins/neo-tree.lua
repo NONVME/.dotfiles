@@ -1,3 +1,5 @@
+local utils = require("common-moduls.utils")
+
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v3.x",
@@ -19,4 +21,13 @@ return {
 			},
 		})
 	end,
+  --   keys = {
+  --   {
+  --     "<leader>fe",
+  --     function()
+  --       require("neo-tree.command").execute({ toggle = true, dir = utils.root() })
+  --     end,
+  --     desc = "Explorer NeoTree (root dir)",
+  --   },
+  -- },
 }
