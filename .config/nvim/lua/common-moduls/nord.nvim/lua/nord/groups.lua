@@ -53,7 +53,7 @@ M.setup = function()
     MatchParen = { fg = colors.ice_blue_8, bg = colors.night_3 },
     NonText = { fg = colors.dark_night_2 },
     Normal = { fg = colors.snow_4, bg = colors.darkest_night_0 },
-    Pmenu = { fg = colors.snow_4, bg = colors.darker_night_1 },
+    Pmenu = { fg = colors.snow_4, bg = colors.darker_night_0 },
     PmenuSbar = { fg = colors.snow_4, bg = colors.darker_night_1 },
     PmenuSel = { fg = colors.ice_blue_8, bg = colors.night_3 },
     PmenuThumb = { fg = colors.ice_blue_8, bg = colors.night_3 },
@@ -64,6 +64,8 @@ M.setup = function()
     SpellRare = { fg = colors.lightest_snow_6, bg = colors.darkest_night_0, undercurl = config.undercurl, sp = colors.lightest_snow_6 },
     Visual = { bg = colors.dark_night_2 },
     VisualNOS = { bg = colors.dark_night_2 },
+    -- NormalFloat = { bg = colors.red_11 },
+    -- FloatBorder = { bg = colors.red_11 },
 
     -- diff TODO: Consider supporting uniform_diff_background config option
     DiffAdd = { fg = colors.green_14, bg = colors.darker_night_1 },
@@ -202,7 +204,6 @@ M.setup = function()
     ['@lsp.type.enum.typescriptreact'] = { link = "NordFgGreenBlue7" },
     ['@lsp.type.interface.typescriptreact'] = { link = "NordFgGreenBlue7" },
 
-    
     -- Language specic groups
     asciidocAttributeEntry = { link = "NordFgOceanBlue10" },
     asciidocAttributeList = { link = "NordFgOceanBlue10" },
@@ -215,7 +216,6 @@ M.setup = function()
     asciidocQuotedMonospaced = { link = "NordFgGreenBlue7" },
     asciidocTriplePlusPassthrough = { link = "NordFgGreenBlue7" },
     asciidocAdmonition = { link = "Keyword" },
-    asciidocAttributeRef = { link = "markdownH1" },
     asciidocBackslash = { link = "Keyword" },
     asciidocMacro = { link = "Keyword" },
     asciidocQuotedBold = { link = "Bold" },
@@ -490,6 +490,26 @@ M.setup = function()
 
     --> junegunn/vim-plug
     plugDeleted = { link = "NordFgRed11" },
+
+    -- GitSigns
+    GitSignsAdd = { fg = colors.green_14 },
+    -- GitSignsAddNr = { fg = colors.green_14 },
+    -- GitSignsAddLn = { fg = colors.green_14 },
+    GitSignsChange = { fg = colors.yellow_13 },
+    -- GitSignsChangeNr = { fg = nord.nord13_gui },
+    -- GitSignsChangeLn = { fg = nord.nord13_gui },
+    GitSignsDelete = { fg = colors.red_11 },
+    -- GitSignsDeleteNr = { fg = nord.nord11_gui },
+    -- GitSignsDeleteLn = { fg = nord.nord11_gui },
+    -- GitSignsCurrentLineBlame = { fg = nord.nord3_gui_bright, style = bold },
+
+    -- Cmp
+    -- CmpItemKind = { fg = colors.red_11 },
+    -- CmpItemAbbrMatch = { fg = colors.red_11, style = bold },
+    -- CmpItemAbbrMatchFuzzy = { fg = nord.nord5_gui, style = bold },
+    -- CmpItemAbbr = { fg = colors.red_11 },
+    -- CmpItemMenu = { bg = colors.red_11 },
+
   }
 
   for group, hl in pairs(config.overrides) do

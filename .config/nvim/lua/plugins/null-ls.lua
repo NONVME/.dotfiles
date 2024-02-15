@@ -14,7 +14,7 @@ return {
         null_ls.builtins.hover.printenv,
         null_ls.builtins.diagnostics.shellcheck,
         -- Yaml
-        null_ls.builtins.diagnostics.yamllint,
+        -- null_ls.builtins.diagnostics.yamllint,
         -- Python
         -- null_ls.builtins.formatting.yapf.with({
         --     -- Only used if available
@@ -55,7 +55,7 @@ return {
       },
     })
 
-    vim.keymap.set({ "n", "v" }, "<leader>gf", vim.lsp.buf.format, {})
-    vim.keymap.set("n", "<leader>gi", ":PyrightOrganizeImports <cr>", {})
+    vim.keymap.set({ "n", "v" }, "<leader>gf", vim.lsp.buf.format, { desc = "Formatting"})
+    vim.keymap.set("n", "<leader>gi", ":PyrightOrganizeImports <cr>", { desc = "Pyright Organize Imports"})
   end,
 }

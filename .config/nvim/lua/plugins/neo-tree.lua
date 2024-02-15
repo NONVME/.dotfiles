@@ -19,15 +19,26 @@ return {
 					hide_hidden = false,
 				},
 			},
+			event_handlers = {
+				{
+					event = "file_opened",
+					handler = function(file_path)
+						-- auto close
+						-- vimc.cmd("Neotree close")
+						-- OR
+						require("neo-tree.command").execute({ action = "close" })
+					end,
+				},
+			},
 		})
 	end,
-  --   keys = {
-  --   {
-  --     "<leader>fe",
-  --     function()
-  --       require("neo-tree.command").execute({ toggle = true, dir = utils.root() })
-  --     end,
-  --     desc = "Explorer NeoTree (root dir)",
-  --   },
-  -- },
+	--   keys = {
+	--   {
+	--     "<leader>fe",
+	--     function()
+	--       require("neo-tree.command").execute({ toggle = true, dir = utils.root() })
+	--     end,
+	--     desc = "Explorer NeoTree (root dir)",
+	--   },
+	-- },
 }

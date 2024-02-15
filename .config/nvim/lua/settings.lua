@@ -10,13 +10,14 @@
 -- Common settings
 --
 
--- vim.opt.termguicolors = true                -- set term gui colors
+vim.opt.termguicolors = true  -- set term gui colors
 
 vim.opt.number = true -- Line Numbers
 vim.opt.scrolloff = 3
 vim.o.langmap = "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
 vim.o.spelllang = "ru_ru,en_us"
 vim.o.linebreak = true
+
 vim.opt.timeoutlen = 400
 vim.wo.signcolumn = "yes"
 vim.opt.swapfile = false
@@ -65,16 +66,25 @@ keymap("i", "<c-j>", "<down>", keymap_opts)
 keymap("i", "<c-h>", "<left>", keymap_opts)
 keymap("i", "<c-l>", "<right>", keymap_opts)
 
+-- Moving between lines slidingly
+keymap("n", "j", "gj", keymap_opts)
+keymap("n", "k", "gk", keymap_opts)
+keymap("x", "j", "gj", keymap_opts)
+keymap("x", "k", "gk", keymap_opts)
+
 keymap('n', '*', '*zz', {desc = 'Search and center screen'})
 -- keymap("n", "<MouseDown>", "<C-Y>", {desc = 'scroll by 1 line per row'})
 -- keymap("n", "<MouseUp>", "<C-E>", {desc = 'scroll by 1 line per row'})
 keymap({ "n", "v" }, "<leader>r", [[:!python3 %<CR>]], {desc = "Shortcut to run file through interpreter"})
 
 
+keymap("n", "<F3>", [[:set invnumber<CR>]], {desc = "Hide numbers"})
+keymap("n", "<F4>", [[:set invwrap<CR>]], {desc = "Hide line breaks"})
+
 --
 -- Custom functions
 --
-local augroup = vim.api.nvim_create_augroup   -- Create/get autocommand group
+-- local augroup = vim.api.nvim_create_augroup   -- Create/get autocommand group
 local autocmd = vim.api.nvim_create_autocmd   -- Create autocommand
 
 -- Don't auto commenting new lines

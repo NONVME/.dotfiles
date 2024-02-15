@@ -12,17 +12,12 @@ return {
 				},
 			},
 			sections = {
-				lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
-				lualine_b = {
-					"filename",
-					"branch",
-				},
+				lualine_a = { { "branch", right_padding = 2 } },
+				lualine_b = { {"filename", path = 4, } },
 				lualine_c = { "fileformat" },
-				lualine_x = {},
-				lualine_y = { "filetype", "progress" },
-				lualine_z = {
-					{ "location", separator = { right = "" }, left_padding = 2 },
-				},
+				lualine_x = { {"diff", colored = false} },
+				lualine_y = { "filetype" },
+				lualine_z = { "%l/%L" },
 			},
 		})
 	end,

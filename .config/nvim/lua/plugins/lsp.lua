@@ -24,7 +24,7 @@ return {
     },
     config = function()
     require("mason-null-ls").setup({
-        ensure_installed = { "stylua", "jq", "printenv", "shellcheck", "yamllint", "black", "flake8"}
+        ensure_installed = { "stylua", "jq", "printenv", "shellcheck", "black"}
     })
     end,
   },
@@ -63,7 +63,17 @@ return {
           vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
         end
       })
-
+      -- Close the window after go to references
+      vim.api.nvim_create_autocmd("FileType", {
+          callback = function()
+              local bufnr = vim.fn.bufnr('%')
+              vim.keymap.set("n", "<cr>", function()
+                  vim.api.nvim_command([[execute "normal! \<cr>"]])
+                  vim.api.nvim_command(bufnr .. 'bd')
+              end, { buffer = bufnr })
+    end,
+    pattern = "qf",
+})
     end,
   },
 }
