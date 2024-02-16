@@ -36,6 +36,8 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.smartindent = true
 
+-- Max height size of popup menu
+vim.opt.pumheight = 15
 --
 -- Mappings
 --
@@ -75,7 +77,7 @@ keymap("x", "k", "gk", keymap_opts)
 keymap('n', '*', '*zz', {desc = 'Search and center screen'})
 -- keymap("n", "<MouseDown>", "<C-Y>", {desc = 'scroll by 1 line per row'})
 -- keymap("n", "<MouseUp>", "<C-E>", {desc = 'scroll by 1 line per row'})
-keymap({ "n", "v" }, "<leader>r", [[:!python3 %<CR>]], {desc = "Shortcut to run file through interpreter"})
+keymap({ "n", "v" }, "<leader>r", [[:!python3 %<CR>]], {desc = "Run file through Python3"})
 
 
 keymap("n", "<F3>", [[:set invnumber<CR>]], {desc = "Hide numbers"})
@@ -84,8 +86,10 @@ keymap("n", "<F4>", [[:set invwrap<CR>]], {desc = "Hide line breaks"})
 --
 -- Custom functions
 --
+
 -- local augroup = vim.api.nvim_create_augroup   -- Create/get autocommand group
 local autocmd = vim.api.nvim_create_autocmd   -- Create autocommand
+local utils = require("common-moduls.utils")
 
 -- Don't auto commenting new lines
 autocmd('BufEnter', {
@@ -115,5 +119,19 @@ vim.cmd([[
   augroup END
 ]])
 
+-- Close floats, and clear highlights with <Esc>
+vim.keymap.set("n", "<Esc>", function()
+  utils.close_floats()
+  if vim.bo.modifiable then
+    utils.clear_highlights()
+  else
+    if #vim.api.nvim_list_wins() > 1 then
+      return utils.feedkeys("<C-w>c")
+    end
+  end
+end, { desc = "Close floats, clear highlights" })
+
+-- NOTE:
 -- about python json tool map https://vi.stackexchange.com/questions/7722/how-to-debug-a-mapping
 -- https://github.com/nix-community/nur-combined/tree/d98af9e2d9a012baa703697f09aeab5b399dea08/repos/ambroisie/modules/home/vim/plugin/settings
+-- https://dotfyle.com

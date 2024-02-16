@@ -59,4 +59,52 @@ M.list_lsp_clients = function(bufnr)
     return names
 end
 
+-- Func to make esc multicloser window
+function M.close_floats()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    if vim.api.nvim_win_get_config(win).relative == "win" then
+      vim.api.nvim_win_close(win, false)
+    end
+  end
+end
+
+---@param str string
+function M.termcodes(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+
+end
+---@param keys string
+---@param mode? string
+function M.feedkeys(keys, mode)
+  if mode == nil then
+    mode = "in"
+  end
+  return vim.api.nvim_feedkeys(M.termcodes(keys), mode, true)
+end
+
+function M.lsp_active()
+  for _, client in pairs(vim.lsp.get_active_clients()) do
+    if client.server_capabilities then
+      return true
+    end
+  end
+  return false
+end
+
+--- Gets the buffer number of every visible buffer
+--- @return integer[]
+function M.visible_buffers()
+  return vim.tbl_map(vim.api.nvim_win_get_buf, vim.api.nvim_list_wins())
+end
+
+function M.clear_highlights()
+  vim.cmd("nohlsearch")
+  if M.lsp_active() then
+    vim.lsp.buf.clear_references()
+    for _, buffer in pairs(M.visible_buffers()) do
+      vim.lsp.util.buf_clear_references(buffer)
+    end
+  end
+end
+
 return M

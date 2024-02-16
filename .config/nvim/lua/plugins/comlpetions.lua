@@ -3,6 +3,8 @@ return {
 	{ "hrsh7th/cmp-path" },
 	{ "hrsh7th/cmp-buffer" },
 	{ "hrsh7th/cmp-cmdline" },
+    { "lukas-reineke/cmp-under-comparator" },
+    { "onsails/lspkind.nvim" },
 	{
 		"L3MON4D3/LuaSnip",
 		dependencies = {
@@ -16,13 +18,14 @@ return {
 	{
 		"hrsh7th/nvim-cmp",
 		config = function()
-			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-
+			vim.lsp.handlers["textDocument/hover"] =
+                vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 			vim.lsp.handlers["textDocument/signatureHelp"] =
 				vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
 			require("luasnip.loaders.from_vscode").lazy_load()
 
+            local lspkind = require('lspkind')
 			local luasnip = require("luasnip")
 			local cmp = require("cmp")
 			local has_words_before = function()
@@ -71,23 +74,63 @@ return {
 				}),
 				sources = cmp.config.sources({
 					{ name = "path" },
-					{ name = "nvim_lsp", keyword_length = 1 },
-					{ name = "buffer", keyword_length = 2 },
-					{ name = "luasnip", keyword_length = 3 }, -- For luasnip users.
+					{ name = "nvim_lsp", priority = 10 },
+					{ name = "buffer", priority = 8, max_item_count = 10 },
+					{ name = "luasnip", priority = 6, max_item_count = 20 }, -- For luasnip users.
+                    { name = "codeium", priority = 2, max_item_count = 15 }
 				}, {}),
-				formatting = {
-					fields = { "menu", "abbr", "kind" },
-					format = function(entry, item)
-						local menu_icon = {
-							nvim_lsp = "λ",
-							luasnip = "⋗",
-							buffer = "Ω",
-							path = "~",
-						}
-						item.menu = menu_icon[entry.source.name]
-						return item
-					end,
-				},
+                formatting = {
+					fields = {"abbr", "kind", "menu", },
+                    format = lspkind.cmp_format({
+                      maxwidth = 25, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                                     -- can also be a function to dynamically calculate max width such as 
+                                     -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
+                      ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+                      show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+                      mode = 'symbol_text', -- show only symbol annotations
+                      -- mode = 'symbol', -- show only symbol annotations
+                      symbol_map = { Codeium = "" },
+                      menu = {
+                        async_path = "ᴘᴀᴛʜ ",
+                        buffer = "ʙᴜꜰ ",
+                        cmdline = "cmd ",   -- cmp-cmdline used on cmdline
+                        latex_symbols = "ʟᴛx ",
+                        luasnip = "sɴɪᴘ ",
+                        snippy = "sɴɪᴘ ",
+                        nvim_lsp = "ʟsᴘ ",
+                        nvim_lua = "ʟᴜᴀ ",
+                        path = "ᴘᴀᴛʜ ",
+                        codeium = "AI "
+                      },
+                    })
+                },
+				-- formatting = {
+				-- 	fields = { "menu", "abbr", "kind" },
+				-- 	format = function(entry, item)
+				-- 		local menu_icon = {
+				-- 			nvim_lsp = "λ",
+				-- 			luasnip = "⋗",
+				-- 			buffer = "Ω",
+				-- 			path = "~",
+    --                      codeium = "Θ"
+				-- 		}
+				-- 		item.menu = menu_icon[entry.source.name]
+				-- 		return item
+				-- 	end,
+				-- },
+                sorting = {
+                    comparators = {
+                        cmp.config.compare.offset,
+                        cmp.config.compare.exact,
+                        require "cmp-under-comparator".under,
+                        cmp.config.compare.score,
+                        cmp.config.compare.kind,
+                        cmp.config.compare.sort_text,
+                        cmp.config.compare.length,
+                        cmp.config.compare.order,
+                    },
+                },
+
 				-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 				cmp.setup.cmdline(":", {
 					mapping = cmp.mapping.preset.cmdline(),
@@ -105,6 +148,20 @@ return {
 					},
 				}),
 			})
+            -- If you want insert `(` after select function or method item
+            local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+            cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done())
 		end,
 	},
+  {
+    'kevinhwang91/nvim-bqf',
+    ft = 'qf',
+    config = function()
+	require("bqf").setup({
+		preview = {
+			winblend = 0,
+		},
+	})
+    end
+  },
 }

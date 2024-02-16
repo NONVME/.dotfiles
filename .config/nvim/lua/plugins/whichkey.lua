@@ -5,3 +5,6 @@ return {
     wk.register(mappings, opts)
   end,
 }
+
+-- TODO:
+-- https://github.com/AlariCode/purpleschool-neovim/blob/main/lua/plugins/whichkey.lua

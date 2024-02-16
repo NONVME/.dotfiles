@@ -4,9 +4,9 @@ return {
   event = { "InsertLeave", "TextChanged" },
   opts = {
     prompt_style = false,
-    conditions = {
-      filetype_is_not = { "lua" }
-    },
+    -- conditions = {
+    --   filetype_is_not = { "lua" }
+    -- },
   },
   enabled = true,
 }
