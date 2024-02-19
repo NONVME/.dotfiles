@@ -6,5 +6,5 @@ return {
   end,
 }
 
--- TODO:
+-- NOTE:
 -- https://github.com/AlariCode/purpleschool-neovim/blob/main/lua/plugins/whichkey.lua

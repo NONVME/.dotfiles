@@ -38,6 +38,8 @@ vim.opt.smartindent = true
 
 -- Max height size of popup menu
 vim.opt.pumheight = 15
+
+
 --
 -- Mappings
 --
@@ -110,14 +112,14 @@ function _G.dump(...)
   print(unpack(objects))
 end
 
-vim.cmd([[
-  augroup myfiletypes
-  autocmd!
-  autocmd FileType ruby,lua,eruby,yaml,javascript,typescript,html,css set ai sw=2 sts=2 et
-  autocmd FileType java,kotlin,xml, set ai sw=4 sts=4 et
-  autocmd FileType asciidoc setlocal wrap
-  augroup END
-]])
+-- vim.cmd([[
+--   augroup myfiletypes
+--   autocmd!
+--   autocmd FileType ruby,lua,eruby,yaml,javascript,typescript,html,css set ai sw=2 sts=2 et
+--   autocmd FileType java,kotlin,xml, set ai sw=4 sts=4 et
+--   autocmd FileType asciidoc setlocal wrap
+--   augroup END
+-- ]])
 
 -- Close floats, and clear highlights with <Esc>
 vim.keymap.set("n", "<Esc>", function()
@@ -131,7 +133,46 @@ vim.keymap.set("n", "<Esc>", function()
   end
 end, { desc = "Close floats, clear highlights" })
 
+local function has_codeium(settings)
+    for _, value in ipairs(settings) do
+        if value.name == "codeium" then
+            return true
+        end
+    end
+end
+
+local function toggle_codeium()
+  local cmp = require('cmp')
+  local current_setting = has_codeium(cmp.get_config().sources)
+  if current_setting then
+    cmp.setup({ sources = cmp.config.sources({
+					{ name = "path" },
+					{ name = "nvim_lsp", priority = 10 },
+					{ name = "buffer", priority = 8, max_item_count = 10 },
+					{ name = "luasnip", priority = 6, max_item_count = 20 },
+                    -- { name = "codeium", priority = 2, max_item_count = 15 }
+				}),
+ })
+    print('codeium disabled')
+  else
+    cmp.setup({ sources = cmp.config.sources({
+					{ name = "path" },
+					{ name = "nvim_lsp", priority = 10 },
+					{ name = "buffer", priority = 8, max_item_count = 10 },
+					{ name = "luasnip", priority = 6, max_item_count = 20 },
+                    { name = "codeium", priority = 2, max_item_count = 15 }
+				}), })
+    print('codeium enabled')
+  end
+end
+
+vim.api.nvim_create_user_command('ToggleCodeium', toggle_codeium, {})
+-- Set a keymap like this for example:
+vim.api.nvim_set_keymap('n', '<Leader>tc', ':ToggleCodeium<CR>', { noremap = true, silent = true })
+
+
 -- NOTE:
 -- about python json tool map https://vi.stackexchange.com/questions/7722/how-to-debug-a-mapping
 -- https://github.com/nix-community/nur-combined/tree/d98af9e2d9a012baa703697f09aeab5b399dea08/repos/ambroisie/modules/home/vim/plugin/settings
 -- https://dotfyle.com
+

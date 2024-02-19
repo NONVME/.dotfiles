@@ -1,10 +1,17 @@
 return {
 	"jackMort/ChatGPT.nvim",
+	dependencies = {
+		"MunifTanjim/nui.nvim",
+		"nvim-lua/plenary.nvim",
+		"folke/trouble.nvim",
+		"nvim-telescope/telescope.nvim",
+	},
 	-- event = "VeryLazy",
 	config = function()
 		require("chatgpt").setup({
 			api_key_cmd = "pass chat.openai.com",
 			edit_with_instructions = {
+                diff = true,
 				keymaps = {
 					close = "<ESC>",
 				},
@@ -67,22 +74,4 @@ return {
 
 		})
 	end,
-	dependencies = {
-		"MunifTanjim/nui.nvim",
-		"nvim-lua/plenary.nvim",
-		"folke/trouble.nvim",
-		"nvim-telescope/telescope.nvim",
-	},
-  	{
-		"Exafunction/codeium.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"hrsh7th/nvim-cmp",
-		},
-        event = { "InsertEnter", "CmdlineEnter", "LspAttach" },
-        build = ":Codeium Auth",
-		config = function()
-			require("codeium").setup({})
-		end,
-	},
 }

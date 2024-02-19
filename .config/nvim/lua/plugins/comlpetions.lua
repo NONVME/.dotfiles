@@ -76,9 +76,9 @@ return {
 					{ name = "path" },
 					{ name = "nvim_lsp", priority = 10 },
 					{ name = "buffer", priority = 8, max_item_count = 10 },
-					{ name = "luasnip", priority = 6, max_item_count = 20 }, -- For luasnip users.
-                    { name = "codeium", priority = 2, max_item_count = 15 }
-				}, {}),
+					{ name = "luasnip", priority = 6, max_item_count = 20 },
+                    -- { name = "codeium", priority = 2, max_item_count = 15 }
+				}),
                 formatting = {
 					fields = {"abbr", "kind", "menu", },
                     format = lspkind.cmp_format({
@@ -104,20 +104,6 @@ return {
                       },
                     })
                 },
-				-- formatting = {
-				-- 	fields = { "menu", "abbr", "kind" },
-				-- 	format = function(entry, item)
-				-- 		local menu_icon = {
-				-- 			nvim_lsp = "λ",
-				-- 			luasnip = "⋗",
-				-- 			buffer = "Ω",
-				-- 			path = "~",
-    --                      codeium = "Θ"
-				-- 		}
-				-- 		item.menu = menu_icon[entry.source.name]
-				-- 		return item
-				-- 	end,
-				-- },
                 sorting = {
                     comparators = {
                         cmp.config.compare.offset,
