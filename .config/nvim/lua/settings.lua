@@ -112,14 +112,14 @@ function _G.dump(...)
   print(unpack(objects))
 end
 
--- vim.cmd([[
---   augroup myfiletypes
---   autocmd!
---   autocmd FileType ruby,lua,eruby,yaml,javascript,typescript,html,css set ai sw=2 sts=2 et
---   autocmd FileType java,kotlin,xml, set ai sw=4 sts=4 et
---   autocmd FileType asciidoc setlocal wrap
---   augroup END
--- ]])
+vim.cmd([[
+  augroup myfiletypes
+  autocmd!
+  autocmd FileType ruby,lua,eruby,yaml,javascript,typescript,html,css set ai sw=2 sts=2 et
+  autocmd FileType java,kotlin,xml, set ai sw=4 sts=4 et
+  autocmd FileType asciidoc setlocal wrap
+  augroup END
+]])
 
 -- Close floats, and clear highlights with <Esc>
 vim.keymap.set("n", "<Esc>", function()
