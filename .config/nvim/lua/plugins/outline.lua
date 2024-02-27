@@ -10,4 +10,5 @@ return {
       autofold_depth = false,
     }, ]]
   },
+  enabled = false,
 }

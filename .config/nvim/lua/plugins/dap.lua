@@ -22,11 +22,11 @@ return {
 			dapui.close()
 		end
 
-		vim.keymap.set("n", "<Leader>bt", ":DapToggleBreakpoint<CR>")
-		vim.keymap.set("n", "<Leader>bc", ":DapContinue<CR>")
-		vim.keymap.set("n", "<Leader>bx", ":DapTerminate<CR>")
-		vim.keymap.set("n", "<Leader>bo", ":DapStepOver<CR>")
-		vim.keymap.set("n", "<leader>bn", function() require("dap-python").test_method() end, {desc = "Dap test method"})
+		vim.keymap.set("n", "<Leader>bt", ":DapToggleBreakpoint<CR>", {desc = "Toggle Breakpoint"})
+		vim.keymap.set("n", "<Leader>bc", ":DapContinue<CR>", {desc = "Continue"})
+		vim.keymap.set("n", "<Leader>bx", ":DapTerminate<CR>", {desc = "Terminate"})
+		vim.keymap.set("n", "<Leader>bo", ":DapStepOver<CR>", {desc = "Step Over"})
+		vim.keymap.set("n", "<leader>bn", function() require("dap-python").test_method() end, {desc = "Test Method"})
 	end,
 }
 

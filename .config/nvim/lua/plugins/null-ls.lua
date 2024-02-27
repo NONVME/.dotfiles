@@ -55,7 +55,11 @@ return {
       },
     })
 
-    vim.keymap.set({ "n", "v" }, "<leader>gf", vim.lsp.buf.format, { desc = "Formatting"})
-    vim.keymap.set("n", "<leader>gi", ":PyrightOrganizeImports <cr>", { desc = "Pyright Organize Imports"})
+    vim.keymap.set({ "n", "v" }, "<leader>hf", vim.lsp.buf.format, { desc = "Formatting", silent = true})
+    vim.keymap.set("n", "<leader>hi", ":PyrightOrganizeImports <cr>", { desc = "Pyright Organize Imports", silent = true})
   end,
 }
+
+
+-- TODO: for shells
+-- https://github.com/nix-community/nur-combined/blob/d98af9e2d9a012baa703697f09aeab5b399dea08/repos/ambroisie/modules/home/vim/plugin/settings/null-ls.lua

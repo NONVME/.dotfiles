@@ -18,7 +18,6 @@ vim.o.langmap = "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJ
 vim.o.spelllang = "ru_ru,en_us"
 vim.o.linebreak = true
 
-vim.opt.timeoutlen = 400
 vim.wo.signcolumn = "yes"
 vim.opt.swapfile = false
 
@@ -168,11 +167,14 @@ end
 
 vim.api.nvim_create_user_command('ToggleCodeium', toggle_codeium, {})
 -- Set a keymap like this for example:
-vim.api.nvim_set_keymap('n', '<Leader>tc', ':ToggleCodeium<CR>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<Leader>tc', ':ToggleCodeium<CR>', { noremap = true, silent = true })
 
 
 -- NOTE:
 -- about python json tool map https://vi.stackexchange.com/questions/7722/how-to-debug-a-mapping
--- https://github.com/nix-community/nur-combined/tree/d98af9e2d9a012baa703697f09aeab5b399dea08/repos/ambroisie/modules/home/vim/plugin/settings
 -- https://dotfyle.com
 
+-- TODO:
+-- https://github.com/chrisgrieser/nvim-kickstart-python
+-- https://nanotipsforvim.prose.sh
+-- https://github.com/RRethy/vim-illuminate highlights the underline text like semshi

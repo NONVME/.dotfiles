@@ -29,12 +29,12 @@ return {
       end, {expr=true, desc = "Git Previous hunk."})
 
       -- Actions
-      map('n', '<leader>hp', gs.preview_hunk, {desc = "Git Preview Hunk"})
-      map('n', '<leader>hb', function() gs.blame_line{full=true} end, {desc = "Git Blame line"})
-      map('n', '<leader>tb', gs.toggle_current_line_blame, {desc = "Git Toggle current line blame"})
-      map('n', '<leader>hd', gs.diffthis, {desc = "Git Diff This"})
-      map('n', '<leader>hD', function() gs.diffthis('@~2') end, {desc = "Git Diff Version of file in the grandparent of HEAD"})
-      map('n', '<leader>td', gs.toggle_deleted, {desc = "Git Toggle deleted"})
+      map('n', '<leader>ip', gs.preview_hunk, {desc = "Git Preview Hunk"})
+      map('n', '<leader>ib', function() gs.blame_line{full=true} end, {desc = "Git Blame line"})
+      map('n', '<leader>iB', gs.toggle_current_line_blame, {desc = "Git Toggle current line blame"})
+      map('n', '<leader>id', gs.diffthis, {desc = "Git Diff This"})
+      map('n', '<leader>iD', function() gs.diffthis('@~2') end, {desc = "Git Diff Version of file in the grandparent of HEAD"})
+      map('n', '<leader>ir', gs.toggle_deleted, {desc = "Git Toggle removed"})
 
     end,
   })
