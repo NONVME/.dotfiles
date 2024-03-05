@@ -178,3 +178,4 @@ vim.api.nvim_create_user_command('ToggleCodeium', toggle_codeium, {})
 -- https://github.com/chrisgrieser/nvim-kickstart-python
 -- https://nanotipsforvim.prose.sh
 -- https://github.com/RRethy/vim-illuminate highlights the underline text like semshi
+-- https://github.com/kawre/leetcode.nvim

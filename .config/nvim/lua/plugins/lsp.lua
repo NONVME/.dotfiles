@@ -24,7 +24,7 @@ return {
     },
     config = function()
       require("mason-null-ls").setup({
-        ensure_installed = { "stylua", "jq", "printenv", "shellcheck", "black" },
+        ensure_installed = { "stylua", "printenv", "shellcheck", "jq", "ruff", "black" },
       })
     end,
   },
@@ -33,11 +33,20 @@ return {
     dependencies = {
       {
         "SmiteshP/nvim-navbuddy",
+        lazy = true,
         dependencies = {
           "SmiteshP/nvim-navic",
           "MunifTanjim/nui.nvim"
         },
-        opts = { lsp = { auto_attach = true } },
+        opts = {
+          lsp = { auto_attach = true },
+          window = {
+            size = { height = "70%", width = "90%"},
+            sections = { left = { size = "25%" } },
+          },
+          source_buffer = { follow_node = false },
+          icons = { Method = "󰊕 " },
+        },
         keys = { { "<C-m>", "<cmd>Navbuddy<CR>", desc = "Toggle Navbuddy" }, },
       }
     },
