@@ -79,6 +79,7 @@ keymap('n', '*', '*zz', {desc = 'Search and center screen'})
 -- keymap("n", "<MouseDown>", "<C-Y>", {desc = 'scroll by 1 line per row'})
 -- keymap("n", "<MouseUp>", "<C-E>", {desc = 'scroll by 1 line per row'})
 keymap({ "n", "v" }, "<leader>r", [[:!python3 %<CR>]], {desc = "Run file through Python3"})
+keymap({ "n", "v" }, "<leader>p", [[:%! python3 -c "import sys, ast, pprint; pprint.pprint(ast.literal_eval(sys.stdin.read()))"<CR>]], {desc = "Pprint python objs"})
 
 
 keymap("n", "<F3>", [[:set invnumber<CR>]], {desc = "Hide numbers"})

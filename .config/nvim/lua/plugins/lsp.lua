@@ -71,6 +71,10 @@ return {
 				diagnostics = {
 					globals = { "vim" },
 				},
+                -- Do not send telemetry data containing a randomized but unique identifier
+                telemetry = {
+                  enable = false,
+                },
 				workspace = {
 					library = {
 						vim.env.VIMRUNTIME,
@@ -82,6 +86,13 @@ return {
 	vim.api.nvim_create_autocmd("LspAttach", {
 		desc = "LSP actions",
 		callback = function()
+          vim.diagnostic.config({
+            virtual_text = false,
+            float = {
+              source = "always",
+              border = "rounded",
+            },
+          })
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = true, desc = "Displays hover information" })
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = true, desc = "Go to definition" })
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = true, desc = "Go to declaration" })

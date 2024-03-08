@@ -4,7 +4,7 @@ return {
   "nvimtools/none-ls.nvim",
   dependencies = {
     "nvimtools/none-ls-extras.nvim",
-    "gbprod/none-ls-shellcheck.nvim"
+    -- "gbprod/none-ls-shellcheck.nvim"
   },
   config = function()
     local null_ls = require("null-ls")
@@ -12,15 +12,20 @@ return {
       sources = {
         -- Lua
         null_ls.builtins.formatting.stylua,
+
         -- Json
         require("none-ls.formatting.jq"),
+
         -- Shell
         null_ls.builtins.hover.printenv,
-        require("none-ls-shellcheck.diagnostics"),
-        require("none-ls-shellcheck.code_actions"),
+        -- require("none-ls-shellcheck.diagnostics"),
+        -- require("none-ls-shellcheck.code_actions"),
+
         -- null_ls.builtins.diagnostics.shellcheck,
+
         -- Yaml
         -- null_ls.builtins.diagnostics.yamllint,
+
         -- Python
         -- null_ls.builtins.formatting.yapf.with({
         --     -- Only used if available
