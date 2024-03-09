@@ -10,11 +10,12 @@
 -- Common settings
 --
 
-vim.opt.termguicolors = true  -- set term gui colors
+vim.opt.termguicolors = true -- set term gui colors
 
 vim.opt.number = true -- Line Numbers
 vim.opt.scrolloff = 3
-vim.o.langmap = "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
+vim.o.langmap =
+  "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
 vim.o.spelllang = "ru_ru,en_us"
 vim.o.linebreak = true
 
@@ -38,7 +39,6 @@ vim.opt.smartindent = true
 -- Max height size of popup menu
 vim.opt.pumheight = 15
 
-
 --
 -- Mappings
 --
@@ -55,13 +55,13 @@ keymap("x", "p", "pgvy", keymap_opts)
 keymap("x", "P", "Pgvy", keymap_opts)
 
 -- Do not lose the buffer after delete
-keymap({"n", "x", "v"}, 'd', '"_d', keymap_opts)
-keymap("n", 'x', '"_x', keymap_opts)
+keymap({ "n", "x", "v" }, "d", '"_d', keymap_opts)
+keymap("n", "x", '"_x', keymap_opts)
 
 -- Hotkeys
 -- Accelerated movement through the text
-keymap({"n", "v"}, "<c-k>", "10k", keymap_opts)
-keymap({"n", "v"}, "<c-j>", "10j", keymap_opts)
+keymap({ "n", "v" }, "<c-k>", "10k", keymap_opts)
+keymap({ "n", "v" }, "<c-j>", "10j", keymap_opts)
 
 -- Keys for quick line editing in insert mode
 keymap("i", "<c-k>", "<up>", keymap_opts)
@@ -75,28 +75,32 @@ keymap("n", "k", "gk", keymap_opts)
 keymap("x", "j", "gj", keymap_opts)
 keymap("x", "k", "gk", keymap_opts)
 
-keymap('n', '*', '*zz', {desc = 'Search and center screen'})
+keymap("n", "*", "*zz", { desc = "Search and center screen" })
 -- keymap("n", "<MouseDown>", "<C-Y>", {desc = 'scroll by 1 line per row'})
 -- keymap("n", "<MouseUp>", "<C-E>", {desc = 'scroll by 1 line per row'})
-keymap({ "n", "v" }, "<leader>r", [[:!python3 %<CR>]], {desc = "Run file through Python3"})
-keymap({ "n", "v" }, "<leader>p", [[:%! python3 -c "import sys, ast, pprint; pprint.pprint(ast.literal_eval(sys.stdin.read()))"<CR>]], {desc = "Pprint python objs"})
+keymap({ "n", "v" }, "<leader>r", [[:!python3 %<CR>]], { desc = "Run file through Python3" })
+keymap(
+  { "n", "v" },
+  "<leader>p",
+  [[:%! python3 -c "import sys, ast, pprint; pprint.pprint(ast.literal_eval(sys.stdin.read()))"<CR>]],
+  { desc = "Pprint python objs" }
+)
 
-
-keymap("n", "<F3>", [[:set invnumber<CR>]], {desc = "Hide numbers"})
-keymap("n", "<F4>", [[:set invwrap<CR>]], {desc = "Hide line breaks"})
+keymap("n", "<F3>", [[:set invnumber<CR>]], { desc = "Hide numbers" })
+keymap("n", "<F4>", [[:set invwrap<CR>]], { desc = "Hide line breaks" })
 
 --
 -- Custom functions
 --
 
 -- local augroup = vim.api.nvim_create_augroup   -- Create/get autocommand group
-local autocmd = vim.api.nvim_create_autocmd   -- Create autocommand
+local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
 local utils = require("common-moduls.utils")
 
 -- Don't auto commenting new lines
-autocmd('BufEnter', {
-  pattern = '',
-  command = 'set fo-=c fo-=r fo-=o'
+autocmd("BufEnter", {
+  pattern = "",
+  command = "set fo-=c fo-=r fo-=o",
 })
 
 -- Set the line in 120 character
@@ -104,22 +108,60 @@ autocmd("FileType", {
   pattern = "python",
   callback = function(args)
     vim.opt.colorcolumn = "120"
-  end
+  end,
 })
 
 function _G.dump(...)
-  local objects = vim.tbl_map(vim.inspect, {...})
+  local objects = vim.tbl_map(vim.inspect, { ... })
   print(unpack(objects))
 end
 
-vim.cmd([[
-  augroup myfiletypes
-  autocmd!
-  autocmd FileType ruby,lua,eruby,yaml,javascript,typescript,html,css set ai sw=2 sts=2 et
-  autocmd FileType java,kotlin,xml, set ai sw=4 sts=4 et
-  autocmd FileType asciidoc setlocal wrap
-  augroup END
-]])
+-- Define a function to set the indentation settings
+local function set_indentation_settings(args)
+  local buf = args.buf
+  local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+  if
+    ft == "ruby"
+    or ft == "lua"
+    or ft == "eruby"
+    or ft == "yaml"
+    or ft == "javascript"
+    or ft == "typescript"
+    or ft == "html"
+    or ft == "css"
+  then
+    vim.api.nvim_buf_set_option(buf, "autoindent", true)
+    vim.api.nvim_buf_set_option(buf, "shiftwidth", 2)
+    vim.api.nvim_buf_set_option(buf, "softtabstop", 2)
+    vim.api.nvim_buf_set_option(buf, "expandtab", true)
+  elseif ft == "java" or ft == "kotlin" or ft == "xml" then
+    vim.api.nvim_buf_set_option(buf, "autoindent", true)
+    vim.api.nvim_buf_set_option(buf, "shiftwidth", 4)
+    vim.api.nvim_buf_set_option(buf, "softtabstop", 4)
+    vim.api.nvim_buf_set_option(buf, "expandtab", true)
+  elseif ft == "asciidoc" then
+    vim.api.nvim_buf_set_option(buf, "wrap", true)
+  end
+end
+
+-- Create autocommands for the specified file types
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "ruby",
+    "lua",
+    "eruby",
+    "yaml",
+    "javascript",
+    "typescript",
+    "html",
+    "css",
+    "java",
+    "kotlin",
+    "xml",
+    "asciidoc",
+  },
+  callback = set_indentation_settings,
+})
 
 -- Close floats, and clear highlights with <Esc>
 vim.keymap.set("n", "<Esc>", function()
@@ -133,43 +175,46 @@ vim.keymap.set("n", "<Esc>", function()
   end
 end, { desc = "Close floats, clear highlights" })
 
+-- Codeium cmds
 local function has_codeium(settings)
-    for _, value in ipairs(settings) do
-        if value.name == "codeium" then
-            return true
-        end
+  for _, value in ipairs(settings) do
+    if value.name == "codeium" then
+      return true
     end
-end
-
-local function toggle_codeium()
-  local cmp = require('cmp')
-  local current_setting = has_codeium(cmp.get_config().sources)
-  if current_setting then
-    cmp.setup({ sources = cmp.config.sources({
-					{ name = "path" },
-					{ name = "nvim_lsp", priority = 10 },
-					{ name = "buffer", priority = 8, max_item_count = 10 },
-					{ name = "luasnip", priority = 6, max_item_count = 20 },
-                    -- { name = "codeium", priority = 2, max_item_count = 15 }
-				}),
- })
-    print('codeium disabled')
-  else
-    cmp.setup({ sources = cmp.config.sources({
-					{ name = "path" },
-					{ name = "nvim_lsp", priority = 10 },
-					{ name = "buffer", priority = 8, max_item_count = 10 },
-					{ name = "luasnip", priority = 6, max_item_count = 20 },
-                    { name = "codeium", priority = 2, max_item_count = 15 }
-				}), })
-    print('codeium enabled')
   end
 end
 
-vim.api.nvim_create_user_command('ToggleCodeium', toggle_codeium, {})
+local function toggle_codeium()
+  local cmp = require("cmp")
+  local current_setting = has_codeium(cmp.get_config().sources)
+  if current_setting then
+    cmp.setup({
+      sources = cmp.config.sources({
+        { name = "path" },
+        { name = "nvim_lsp", priority = 10 },
+        { name = "buffer", priority = 8, max_item_count = 10 },
+        { name = "luasnip", priority = 6, max_item_count = 20 },
+        -- { name = "codeium", priority = 2, max_item_count = 15 }
+      }),
+    })
+    print("codeium disabled")
+  else
+    cmp.setup({
+      sources = cmp.config.sources({
+        { name = "path" },
+        { name = "nvim_lsp", priority = 10 },
+        { name = "buffer", priority = 8, max_item_count = 10 },
+        { name = "luasnip", priority = 6, max_item_count = 20 },
+        { name = "codeium", priority = 2, max_item_count = 15 },
+      }),
+    })
+    print("codeium enabled")
+  end
+end
+
+vim.api.nvim_create_user_command("ToggleCodeium", toggle_codeium, {})
 -- Set a keymap like this for example:
 -- vim.api.nvim_set_keymap('n', '<Leader>tc', ':ToggleCodeium<CR>', { noremap = true, silent = true })
-
 
 -- NOTE:
 -- about python json tool map https://vi.stackexchange.com/questions/7722/how-to-debug-a-mapping

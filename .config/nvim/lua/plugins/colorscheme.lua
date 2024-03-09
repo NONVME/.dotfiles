@@ -3,7 +3,7 @@ return {
   priority = 1000,
   config = function()
     -- require('nord').setup()
-    vim.cmd.colorscheme('nord')
+    vim.cmd.colorscheme("nord")
   end,
 }
 
@@ -36,15 +36,4 @@ return {
 --     vim.g.nord_contrast = true
 --     vim.cmd.colorscheme('nord')
 --   end,
--- }
--- return {
---   {
---     "catppuccin/nvim",
---     lazy = false,
---     name = "catppuccin",
---     priority = 1000,
---     config = function()
---       vim.cmd.colorscheme "catppuccin"
---     end
---   }
 -- }

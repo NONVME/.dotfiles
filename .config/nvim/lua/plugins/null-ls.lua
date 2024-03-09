@@ -11,7 +11,9 @@ return {
     null_ls.setup({
       sources = {
         -- Lua
-        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.stylua.with({
+          extra_args = { "--indent-type=Spaces", "--indent-width=2", "--column-width=120" },
+        }),
 
         -- Json
         require("none-ls.formatting.jq"),
@@ -32,9 +34,9 @@ return {
         --     condition = utils.is_executable_condition("yapf"),
         -- }),
         null_ls.builtins.formatting.black.with({
-            extra_args = { "--fast" },
-            -- Only used if available
-            condition = utils.is_executable_condition("black"),
+          extra_args = { "--fast" },
+          -- Only used if available
+          condition = utils.is_executable_condition("black"),
         }),
         require("none-ls.diagnostics.ruff"),
         -- require("none-ls.formatting.ruff_format"),
@@ -63,16 +65,18 @@ return {
         --     -- Only used if available
         --     condition = utils.is_executable_condition("isort"),
         -- }),
-
-
       },
     })
 
-    vim.keymap.set({ "n", "v" }, "<leader>hf", vim.lsp.buf.format, { desc = "Formatting", silent = true})
-    vim.keymap.set("n", "<leader>hi", ":PyrightOrganizeImports <cr>", { desc = "Pyright Organize Imports", silent = true})
+    vim.keymap.set({ "n", "v" }, "<leader>hf", vim.lsp.buf.format, { desc = "Formatting", silent = true })
+    vim.keymap.set(
+      "n",
+      "<leader>hi",
+      ":PyrightOrganizeImports <cr>",
+      { desc = "Pyright Organize Imports", silent = true }
+    )
   end,
 }
-
 
 -- TODO: for shells
 -- https://github.com/nix-community/nur-combined/blob/d98af9e2d9a012baa703697f09aeab5b399dea08/repos/ambroisie/modules/home/vim/plugin/settings/null-ls.lua

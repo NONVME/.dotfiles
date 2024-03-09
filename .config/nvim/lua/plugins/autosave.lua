@@ -1,6 +1,6 @@
 return {
   "0x00-ketsu/autosave.nvim",
-    -- lazy-loading on events
+  -- lazy-loading on events
   event = { "InsertLeave", "TextChanged" },
   opts = {
     prompt_style = false,

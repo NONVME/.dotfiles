@@ -5,10 +5,6 @@ return {
   keys = { -- Example mapping to toggle outline
     { "<C-m>", "<cmd>Outline<CR>", desc = "Toggle outline" },
   },
-  opts = {
-    --[[ symbol_folding = {
-      autofold_depth = false,
-    }, ]]
-  },
+  opts = {},
   enabled = false,
 }
