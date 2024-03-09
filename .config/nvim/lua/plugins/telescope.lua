@@ -4,7 +4,8 @@ return {
     branch = "0.1.x",
     dependencies = {
       { "nvim-lua/plenary.nvim" },
-      -- { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+      { "BurntSushi/ripgrep" },
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     config = function()
       local builtin = require("telescope.builtin")
@@ -25,26 +26,26 @@ return {
               results_width = 0.8,
             },
           },
-          vimgrep_arguments = {
-            "rg", -- Use ripgrep
-            "--color=never", -- Don't use color codes
-            "--no-heading", -- Don't show the file name
-            "--with-filename", -- Show the file name
-            "--line-number", -- Show the line number
-            "--column", -- Show the column number
-            "--smart-case", -- Ignore case for lowercase search terms
-          },
-          -- extensions = {
-          --   fzf = {
-          --     fuzzy = true,
-          --     override_generic_sorter = true,
-          --     override_file_sorter = true,
-          --     case_mode = "smart_case",
-          --   },
+          -- vimgrep_arguments = {
+          --   "rg", -- Use ripgrep
+          --   "--color=never", -- Don't use color codes
+          --   "--no-heading", -- Don't show the file name
+          --   "--with-filename", -- Show the file name
+          --   "--line-number", -- Show the line number
+          --   "--column", -- Show the column number
+          --   "--smart-case", -- Ignore case for lowercase search terms
           -- },
+          extensions = {
+            fzf = {
+              fuzzy = true,
+              override_generic_sorter = true,
+              override_file_sorter = true,
+              -- case_mode =smart_case,
+            },
+          },
         },
       })
-      -- telescope.load_extension("fzf")
+      telescope.load_extension("fzf")
     end,
   },
 }

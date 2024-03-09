@@ -47,7 +47,9 @@ return {
           source_buffer = { follow_node = false },
           icons = { Method = "󰊕 " },
         },
-        keys = { { "<C-m>", "<cmd>Navbuddy<CR>", desc = "Toggle Navbuddy" } },
+        keys = {
+          { "<C-m>", "<cmd>Navbuddy<CR>", desc = "Toggle Navbuddy" },
+        },
       },
     },
     event = { "BufReadPre", "BufNewFile" },

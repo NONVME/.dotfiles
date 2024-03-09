@@ -9,5 +9,6 @@ return {
       ["<leader>i"] = { name = "Git" },
       ["<leader>b"] = { name = "Dap" },
     })
+    vim.keymap.set("n", "<leader>w", ":WhichKey<CR>", { desc = "WhichKey Show mapping" })
   end,
 }
