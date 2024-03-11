@@ -1,11 +1,14 @@
 return {
-  "mfussenegger/nvim-dap",
+  "mfussenegger/nvim-dap-python",
+  ft = 'python',
   dependencies = {
-    "mfussenegger/nvim-dap-python",
+    "mfussenegger/nvim-dap",
     "rcarriga/nvim-dap-ui",
   },
   config = function()
-    require("dap-python").setup("~/.virtualenvs/debugpy/bin/python")
+    local debugpy_package = require("mason-registry").get_package("debugpy")
+    local path = require("mason-core.package").get_install_path(debugpy_package) .. "/venv/bin/python3"
+    require("dap-python").setup(path)
 
     local dap, dapui = require("dap"), require("dapui")
 
@@ -22,15 +25,11 @@ return {
       dapui.close()
     end
 
-    vim.keymap.set("n", "<Leader>bt", ":DapToggleBreakpoint<CR>", { desc = "Toggle Breakpoint" })
-    vim.keymap.set("n", "<Leader>bc", ":DapContinue<CR>", { desc = "Continue" })
-    vim.keymap.set("n", "<Leader>bx", ":DapTerminate<CR>", { desc = "Terminate" })
-    vim.keymap.set("n", "<Leader>bo", ":DapStepOver<CR>", { desc = "Step Over" })
-    vim.keymap.set("n", "<leader>bn", function()
-      require("dap-python").test_method()
-    end, { desc = "Test Method" })
-  end,
-}
+    vim.keymap.set("n", "<Leader>db", ":DapToggleBreakpoint<CR>", { desc = "Toggle Breakpoint" })
+    vim.keymap.set("n", "<Leader>dc", ":DapContinue<CR>", { desc = "Continue" })
+    vim.keymap.set("n", "<Leader>dx", ":DapTerminate<CR>", { desc = "Terminate" })
+    vim.keymap.set("n", "<Leader>do", ":DapStepOver<CR>", { desc = "Step Over" })
+    vim.keymap.set("n", "<leader>dn", function() require("dap-python").test_method() end, { desc = "Test Method" }) end, }
 
 -- NOTE:
 -- https://www.lazyvim.org/extras/dap/core#nvim-dap

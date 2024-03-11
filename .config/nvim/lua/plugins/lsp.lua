@@ -100,24 +100,9 @@ return {
           vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = true, desc = "Go to declaration" })
           vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = true, desc = "Go to references" })
           vim.keymap.set("n", "rn", vim.lsp.buf.rename, { buffer = true, desc = "Rename all references" })
-          vim.keymap.set(
-            "n",
-            "gt",
-            vim.lsp.buf.type_definition,
-            { buffer = true, desc = "Go to the definition of the type symbol" }
-          )
-          vim.keymap.set(
-            "n",
-            "gl",
-            vim.diagnostic.open_float,
-            { buffer = true, desc = "Show diagnostics in a floating window" }
-          )
-          vim.keymap.set(
-            "n",
-            "gs",
-            vim.lsp.buf.signature_help,
-            { buffer = true, desc = "Displays a function's signature information" }
-          )
+          vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = true, desc = "Go to the definition of the type symbol" })
+          vim.keymap.set("n", "gl", vim.diagnostic.open_float, { buffer = true, desc = "Show diagnostics in a floating window" })
+          vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, { buffer = true, desc = "Displays a function's signature information" })
           -- vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
         end,
       })

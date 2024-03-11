@@ -6,8 +6,8 @@ return {
     wk.register({
       ["<leader>t"] = { name = "Telescope" },
       ["<leader>h"] = { name = "Helpers" },
-      ["<leader>i"] = { name = "Git" },
-      ["<leader>b"] = { name = "Dap" },
+      ["<leader>g"] = { name = "Git" },
+      ["<leader>d"] = { name = "Dap" },
     })
     vim.keymap.set("n", "<leader>w", ":WhichKey<CR>", { desc = "WhichKey Show mapping" })
   end,

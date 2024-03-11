@@ -12,7 +12,7 @@ return {
       sources = {
         -- Lua
         null_ls.builtins.formatting.stylua.with({
-          extra_args = { "--indent-type=Spaces", "--indent-width=2", "--column-width=120" },
+          extra_args = { "--indent-type=Spaces", "--indent-width=2", "--column-width=140" },
         }),
 
         -- Json
@@ -68,7 +68,9 @@ return {
       },
     })
 
-    vim.keymap.set({ "n", "v" }, "<leader>hf", vim.lsp.buf.format, { desc = "Formatting", silent = true })
+    vim.keymap.set({ "n", "v" }, "<leader>hf", function ()
+      vim.lsp.buf.format({ async = true })
+    end, { desc = "Formatting", silent = true })
     vim.keymap.set(
       "n",
       "<leader>hi",

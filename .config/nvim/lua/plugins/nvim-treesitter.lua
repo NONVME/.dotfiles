@@ -29,7 +29,7 @@ return {
       auto_install = true,
       highlight = {
         enable = true,
-        -- disable = { "python" },
+        disable = { "python", "yaml", "toml" },
       },
       indent = { enable = true },
     })

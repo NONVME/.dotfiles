@@ -17,7 +17,7 @@ return {
         lualine_c = { "fileformat" },
         lualine_x = { { "diff", colored = false } },
         lualine_y = { "filetype" },
-        lualine_z = { "%l/%L" },
+        lualine_z = { "%l/%L:%c" },
       },
     })
   end,

@@ -31,17 +31,17 @@ return {
         end, { expr = true, desc = "Git Previous hunk." })
 
         -- Actions
-        vim.keymap.set("n", "<leader>ip", gs.preview_hunk, { desc = "Git Preview Hunk" })
-        vim.keymap.set("n", "<leader>ib", function()
+        vim.keymap.set("n", "<leader>gp", gs.preview_hunk, { desc = "Git Preview Hunk" })
+        vim.keymap.set("n", "<leader>gb", function()
           gs.blame_line({ full = true })
         end, { desc = "Git Blame line" })
-        vim.keymap.set("n", "<leader>iB", gs.toggle_current_line_blame, { desc = "Git Toggle current line blame" })
-        vim.keymap.set("n", "<leader>id", gs.diffthis, { desc = "Git Diff This" })
-        vim.keymap.set("n", "<leader>iD", function()
+        vim.keymap.set("n", "<leader>gB", gs.toggle_current_line_blame, { desc = "Git Toggle current line blame" })
+        vim.keymap.set("n", "<leader>gd", gs.diffthis, { desc = "Git Diff This" })
+        vim.keymap.set("n", "<leader>gD", function()
           gs.diffthis("@~2")
         end, { desc = "Git Diff Version of file in the grandparent of HEAD" })
-        vim.keymap.set("n", "<leader>ir", gs.toggle_deleted, { desc = "Git Toggle removed" })
-        vim.keymap.set("n", "<leader>ir", gs.toggle_deleted, { desc = "Git Toggle removed" })
+        vim.keymap.set("n", "<leader>gr", gs.toggle_deleted, { desc = "Git Toggle removed" })
+        vim.keymap.set("n", "<leader>gr", gs.toggle_deleted, { desc = "Git Toggle removed" })
       end,
     })
   end,

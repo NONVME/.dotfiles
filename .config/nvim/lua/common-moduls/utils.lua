@@ -107,4 +107,48 @@ function M.clear_highlights()
   end
 end
 
+-- Function to disable all cmp-highlight groups
+local function disable_cmp_highlights()
+ -- List of cmp-highlight groups you want to disable
+ local cmp_highlight_groups = {
+    -- 'CmpItemKindClass',
+    -- 'CmpItemKindColor',
+    -- 'CmpItemKindConstant',
+    -- 'CmpItemKindConstructor',
+    -- 'CmpItemKindEnum',
+    -- 'CmpItemKindEnumMember',
+    -- 'CmpItemKindEvent',
+    -- 'CmpItemKindField',
+    -- 'CmpItemKindFile',
+    -- 'CmpItemKindFolder',
+    -- 'CmpItemKindFunction',
+    -- 'CmpItemKindInterface',
+    -- 'CmpItemKindKeyword',
+    -- 'CmpItemKindMethod',
+    -- 'CmpItemKindModule',
+    -- 'CmpItemKindOperator',
+    -- 'CmpItemKindProperty',
+    -- 'CmpItemKindReference',
+    -- 'CmpItemKindSnippet',
+    -- 'CmpItemKindStruct',
+    -- 'CmpItemKindText',
+    -- 'CmpItemKindTypeParameter',
+    -- 'CmpItemKindUnit',
+    -- 'CmpItemKindValue',
+    -- 'CmpItemKindVariable',
+    "Identifier"
+ }
+
+ -- Loop through each group and disable it
+ for _, group in ipairs(cmp_highlight_groups) do
+    vim.api.nvim_set_hl(0, group, {})
+    print(group)
+ end
+end
+
+vim.api.nvim_create_user_command('MyCommand', function()
+  disable_cmp_highlights()
+  print("This is my custom command!")
+end, {})
+
 return M
