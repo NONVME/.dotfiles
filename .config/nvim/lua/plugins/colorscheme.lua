@@ -16,6 +16,15 @@
 --   end,
 -- }
 
+-- return {
+--   "catppuccin/nvim",
+--   name = "catppuccin",
+--   priority = 1000,
+--   config = function ()
+--     vim.cmd.colorscheme("catppuccin")
+--   end
+-- }
+
 
 return {
   'shaunsingh/nord.nvim',
@@ -33,6 +42,7 @@ return {
     vim.g.nord_bold = false
     vim.cmd.colorscheme('nord')
     vim.api.nvim_set_hl(0, "Identifier", {})
+    -- vim.api.nvim_set_hl(0, "LspDiagnosticsUnderlineWarning", {})
     require("headlines").setup({
     markdown = {
         headline_highlights = {

@@ -1,6 +1,7 @@
 return {
   "wookayin/semshi",
   -- enabled = false,
+  lazy = false,
   ft = "python",
   build = ":UpdateRemotePlugins",
   version = "*", -- Recommended to use the latest release

@@ -22,14 +22,13 @@ return {
         "make",
         "gitignore",
         "bash",
-        "markdown",
         "racket",
         "ninja",
       },
       auto_install = true,
       highlight = {
         enable = true,
-        disable = { "python", "yaml", "toml" },
+        disable = { "python", "yaml", "toml", "markdown", "ini", "tmux" },
       },
       indent = { enable = true },
     })
