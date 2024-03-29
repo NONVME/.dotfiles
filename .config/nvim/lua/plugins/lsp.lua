@@ -3,7 +3,9 @@ return {
     "williamboman/mason.nvim",
     lazy = false,
     config = function()
-      require("mason").setup()
+      require("mason").setup({
+           ui = { border = "rounded" }
+      })
     end,
   },
   -- For LSPs
@@ -24,7 +26,7 @@ return {
     },
     config = function()
       require("mason-null-ls").setup({
-        ensure_installed = { "stylua", "printenv", "shellcheck", "jq", "ruff", "black" },
+        ensure_installed = { "stylua", "printenv", "shellcheck", "jq", "ruff", "black", "yamllint", "isort"},
       })
     end,
   },
@@ -54,11 +56,25 @@ return {
     },
     event = { "BufReadPre", "BufNewFile" },
     lazy = false,
+    keys = {},
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
       lspconfig.pyright.setup({
         capabilities = capabilities,
+        -- settings = {
+        --     python = {
+        --         analysis = {
+        --             -- useLibraryCodeForTypes = true,
+        --             -- diagnosticSeverityOverrides = {
+        --             --     reportGeneralTypeIssues = "warning",
+        --             --     reportUnusedVariable = "none",
+        --             --     reportUndefinedVariable = "none",
+        --             -- },
+        --             -- typeCheckingMode = "off"
+        --         },
+        --     },
+        -- },
       })
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
@@ -98,7 +114,7 @@ return {
           vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = true, desc = "Displays hover information" })
           vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = true, desc = "Go to definition" })
           vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = true, desc = "Go to declaration" })
-          vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = true, desc = "Go to references" })
+          vim.keymap.set("n", "gR", vim.lsp.buf.references, { buffer = true, desc = "Go to references" })
           vim.keymap.set("n", "rn", vim.lsp.buf.rename, { buffer = true, desc = "Rename all references" })
           vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = true, desc = "Go to the definition of the type symbol" })
           vim.keymap.set("n", "gl", vim.diagnostic.open_float, { buffer = true, desc = "Show diagnostics in a floating window" })

@@ -30,6 +30,7 @@ return {
       vim.keymap.set("n", "<leader>tk", "<cmd>Telescope keymaps<CR>", { desc = "Key Maps" })
       vim.keymap.set("n", "<leader>td", "<cmd>Telescope diagnostics<CR>", { desc = "Diagnostics" })
       vim.keymap.set("n", "<leader>tg", "<cmd>Telescope git_signs<CR>", { desc = "Git status" })
+      vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", { desc = "Go to references" })
       local telescope = require("telescope")
       telescope.setup({
         defaults = {

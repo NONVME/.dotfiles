@@ -1,6 +1,7 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
+  priority = 980,
   config = function()
     local config = require("nvim-treesitter.configs")
     config.setup({
@@ -28,7 +29,7 @@ return {
       auto_install = true,
       highlight = {
         enable = true,
-        disable = { "python", "yaml", "toml", "markdown", "ini", "tmux" },
+        disable = { "yaml", "toml", "markdown", "ini", "tmux" },
       },
       indent = { enable = true },
     })

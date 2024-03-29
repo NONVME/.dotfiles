@@ -1,5 +1,5 @@
 return {
-  { "hrsh7th/cmp-nvim-lsp" },
+  { "hrsh7th/cmp-nvim-lsp", priority = 970},
   { "hrsh7th/cmp-path" },
   { "hrsh7th/cmp-buffer" },
   { "hrsh7th/cmp-cmdline" },
@@ -43,6 +43,7 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
+          -- ["<C-i>"] = cmp.mapping.complete({
           ["<C-i>"] = cmp.mapping.complete({
             config = {
               sources = {

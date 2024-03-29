@@ -28,12 +28,6 @@
 
 return {
   'shaunsingh/nord.nvim',
-  -- dir = "~/.config/nvim/lua/common-moduls/nord.nvim/",
-  dependencies = {
-        "lukas-reineke/headlines.nvim",
-        dependencies = "nvim-treesitter/nvim-treesitter",
-        config = true, -- or `opts = {}`
-    },
   priority = 1000,
   config = function()
     vim.g.nord_italic = false
@@ -43,21 +37,5 @@ return {
     vim.cmd.colorscheme('nord')
     vim.api.nvim_set_hl(0, "Identifier", {})
     -- vim.api.nvim_set_hl(0, "LspDiagnosticsUnderlineWarning", {})
-    require("headlines").setup({
-    markdown = {
-        headline_highlights = {
-            "Headline1",
-            "Headline2",
-            "Headline3",
-            "Headline4",
-            "Headline5",
-            "Headline6",
-        },
-        -- headline_highlights = { "Headline" },
-        -- bullet_highlights = false
-        bullets = false,
-        fat_headlines = false,
-    },
-  })
   end,
 }

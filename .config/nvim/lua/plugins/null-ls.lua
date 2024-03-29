@@ -26,7 +26,7 @@ return {
         -- null_ls.builtins.diagnostics.shellcheck,
 
         -- Yaml
-        -- null_ls.builtins.diagnostics.yamllint,
+        null_ls.builtins.diagnostics.yamllint,
 
         -- Python
         -- null_ls.builtins.formatting.yapf.with({
@@ -61,22 +61,20 @@ return {
         --     -- Only used if available
         --     condition = utils.is_executable_condition("pylint"),
         -- }),
-        -- null_ls.builtins.formatting.isort.with({
-        --     -- Only used if available
-        --     condition = utils.is_executable_condition("isort"),
-        -- }),
+        null_ls.builtins.formatting.isort.with({
+          -- Only used if available
+          condition = utils.is_executable_condition("isort"),
+        }),
       },
     })
 
-    vim.keymap.set({ "n", "v" }, "<leader>hf", function ()
+    vim.keymap.set({ "n", "v" }, "<leader>hf", function()
       vim.lsp.buf.format({ async = true })
     end, { desc = "Formatting", silent = true })
-    vim.keymap.set(
-      "n",
-      "<leader>hi",
-      ":PyrightOrganizeImports <cr>",
-      { desc = "Pyright Organize Imports", silent = true }
-    )
+    vim.keymap.set("n", "<leader>hI", ":PyrightOrganizeImports <cr>",
+      { desc = "Pyright organize Imports", silent = true })
+    vim.keymap.set("n", "<leader>hi", ":!isort %<CR><esc>",
+      { desc = "Isort organize Imports", silent = true })
   end,
 }
 
