@@ -13,7 +13,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     lazy = false,
     opts = {
-      ensure_installed = { "pyright", "lua_ls" },
+      ensure_installed = { "pyright", "lua_ls", "bashls" },
     },
   },
   -- For formatters, linters. DAP?
@@ -26,7 +26,7 @@ return {
     },
     config = function()
       require("mason-null-ls").setup({
-        ensure_installed = { "stylua", "printenv", "shellcheck", "jq", "ruff", "black", "yamllint", "isort"},
+        ensure_installed = { "stylua", "printenv", "ruff", "black", "yamllint", "codespell", "prettier", "shfmt"},
       })
     end,
   },
@@ -60,6 +60,7 @@ return {
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
+      lspconfig.bashls.setup({})
       lspconfig.pyright.setup({
         capabilities = capabilities,
         -- settings = {
