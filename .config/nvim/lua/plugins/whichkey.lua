@@ -1,7 +1,10 @@
 return {
   "folke/which-key.nvim",
+  init = function()
+    vim.o.timeout = true
+    vim.o.timeoutlen = 500
+  end,
   config = function()
-    vim.opt.timeoutlen = 400
     local wk = require("which-key")
     wk.register({
       ["<leader>t"] = { name = "Telescope" },

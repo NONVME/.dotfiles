@@ -88,6 +88,7 @@ keymap(
 
 keymap("n", "<F3>", [[:set invnumber<CR>]], { desc = "Hide numbers" })
 keymap("n", "<F4>", [[:set invwrap<CR>]], { desc = "Hide line breaks" })
+keymap('n', '<c-i>', '<cmd>bnext<CR>', { desc = '[N]ext buffer' })
 
 --
 -- Custom functions
