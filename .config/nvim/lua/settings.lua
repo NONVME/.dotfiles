@@ -117,52 +117,52 @@ function _G.dump(...)
   print(unpack(objects))
 end
 
--- Define a function to set the indentation settings
-local function set_indentation_settings(args)
-  local buf = args.buf
-  local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-  if
-    ft == "ruby"
-    or ft == "lua"
-    or ft == "eruby"
-    or ft == "yaml"
-    or ft == "javascript"
-    or ft == "typescript"
-    or ft == "html"
-    or ft == "css"
-  then
-    vim.api.nvim_buf_set_option(buf, "autoindent", true)
-    vim.api.nvim_buf_set_option(buf, "shiftwidth", 2)
-    vim.api.nvim_buf_set_option(buf, "softtabstop", 2)
-    vim.api.nvim_buf_set_option(buf, "expandtab", true)
-  elseif ft == "java" or ft == "kotlin" or ft == "xml" then
-    vim.api.nvim_buf_set_option(buf, "autoindent", true)
-    vim.api.nvim_buf_set_option(buf, "shiftwidth", 4)
-    vim.api.nvim_buf_set_option(buf, "softtabstop", 4)
-    vim.api.nvim_buf_set_option(buf, "expandtab", true)
-  elseif ft == "asciidoc" then
-    vim.api.nvim_buf_set_option(buf, "wrap", true)
-  end
-end
+-- -- Define a function to set the indentation settings
+-- local function set_indentation_settings(args)
+--   local buf = args.buf
+--   local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+--   if
+--     ft == "ruby"
+--     or ft == "lua"
+--     or ft == "eruby"
+--     or ft == "yaml"
+--     or ft == "javascript"
+--     or ft == "typescript"
+--     or ft == "html"
+--     or ft == "css"
+--   then
+--     vim.api.nvim_buf_set_option(buf, "autoindent", true)
+--     vim.api.nvim_buf_set_option(buf, "shiftwidth", 2)
+--     vim.api.nvim_buf_set_option(buf, "softtabstop", 2)
+--     vim.api.nvim_buf_set_option(buf, "expandtab", true)
+--   elseif ft == "java" or ft == "kotlin" or ft == "xml" then
+--     vim.api.nvim_buf_set_option(buf, "autoindent", true)
+--     vim.api.nvim_buf_set_option(buf, "shiftwidth", 4)
+--     vim.api.nvim_buf_set_option(buf, "softtabstop", 4)
+--     vim.api.nvim_buf_set_option(buf, "expandtab", true)
+--   elseif ft == "asciidoc" then
+--     vim.api.nvim_buf_set_option(buf, "wrap", true)
+--   end
+-- end
 
--- Create autocommands for the specified file types
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = {
-    "ruby",
-    "lua",
-    "eruby",
-    "yaml",
-    "javascript",
-    "typescript",
-    "html",
-    "css",
-    "java",
-    "kotlin",
-    "xml",
-    "asciidoc",
-  },
-  callback = set_indentation_settings,
-})
+-- -- Create autocommands for the specified file types
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = {
+--     "ruby",
+--     "lua",
+--     "eruby",
+--     "yaml",
+--     "javascript",
+--     "typescript",
+--     "html",
+--     "css",
+--     "java",
+--     "kotlin",
+--     "xml",
+--     "asciidoc",
+--   },
+--   callback = set_indentation_settings,
+-- })
 
 -- Close floats, and clear highlights with <Esc>
 vim.keymap.set("n", "<Esc>", function()
