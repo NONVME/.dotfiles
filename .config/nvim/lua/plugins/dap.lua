@@ -4,6 +4,7 @@ return {
   dependencies = {
     "mfussenegger/nvim-dap",
     "rcarriga/nvim-dap-ui",
+    "nvim-neotest/nvim-nio",
   },
   config = function()
     local debugpy_package = require("mason-registry").get_package("debugpy")

@@ -20,7 +20,7 @@ return {
         null_ls.builtins.hover.printenv,
         -- Yaml, Js, Ts, Css, Html, Json, Markdown
         null_ls.builtins.diagnostics.yamllint.with({
-          extra_args = { "-d", "{extends: relaxed, rules: {line-length: {max: 120}}}" },
+          extra_args = { "-d", "{extends: relaxed, rules: {line-length: disable}}" },
         }),
         null_ls.builtins.formatting.prettier,
         -- Python
