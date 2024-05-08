@@ -13,7 +13,7 @@ return {
       },
       sections = {
         lualine_a = { { "branch", right_padding = 2 } },
-        lualine_b = { { "filename", path = 4 } },
+        lualine_b = { { "filename", path = 3 } },
         lualine_c = { "fileformat" },
         lualine_x = { { "diff", colored = false } },
         lualine_y = { "filetype" },
